@@ -1,0 +1,73 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,600&family=Bebas+Neue&family=Condiment&family=Darumadrop+One&display=swap');
+
+/* Cursor customizado */
+.cursor-dot {
+  width: 1rem;
+  height: 1rem;
+  background-color: oklch(72% 0.25 350);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: difference;
+  transition: transform 0.12s ease-out;
+  will-change: transform;
+}
+
+@media (max-width: 1023px) {
+  .cursor-dot {
+    display: none;
+  }
+}
+
+/* tema */
+:root {
+  --color-neon-pink: #ff007f;
+  --color-cyan: #00f0ff;
+  --color-cyber-black: #050505;
+  --color-off-white: #f4f3ee;
+
+  --font-inter: 'Inter', sans-serif;
+  --font-bebas: 'Bebas Neue', Impact, sans-serif;
+  --font-condiment: 'Condiment', cursive;
+  --font-daruma: 'Darumadrop One', system-ui;
+}
+
+/* grain */
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.055;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-cyber-black);
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-neon-pink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}

@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+:host.cursor-none {
+  cursor: none;
+}
+
+:host.cursor-none * {
+  cursor: none;
+}

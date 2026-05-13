@@ -1,0 +1,369 @@
+:host {
+  display: block;
+}
+
+/* ── Luzes da secção About (spray rosado) ─────────────────────────────
+   Motivo anterior de “não funcionar”: o HTML usa .about-spray-layer e
+   só existiam regras .bg-glow / .about-blob (marcapasso sem elementos). */
+
+.hero.Second-Page {
+  position: relative;
+  z-index: 10;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  /* clip cortava blobs com blur/top/left negativos — não esconder o glow */
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+.about-spray-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Ruído leve só sobre os glows (borda menos “limpíssima”) */
+.about-spray-layer::after {
+  content: '';
+  position: absolute;
+  inset: -5%;
+  z-index: 2;
+  opacity: 0.14;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  background-size: cover;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.about-spray {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  /* cores opacas nos stops + blur → visível em qualquer fundo escuro */
+  filter: blur(56px);
+  z-index: 1;
+}
+
+/* Topo esquerdo — médio, mais suave */
+.about-spray--tl {
+  width: clamp(280px, 56vw, 540px);
+  height: clamp(220px, 46vw, 440px);
+  top: max(-9rem, -18vmin);
+  left: max(-7.5rem, -14vmin);
+  transform: rotate(-10deg);
+  background: radial-gradient(
+    ellipse 72% 65% at 28% 25%,
+    rgb(255 0 127 / 0.52) 0%,
+    rgb(255 0 127 / 0.26) 40%,
+    rgb(255 0 127 / 0.08) 62%,
+    transparent 74%
+  );
+  opacity: 0.82;
+}
+
+/* Topo direito — grande, forte */
+.about-spray--tr {
+  width: clamp(320px, 72vw, 720px);
+  height: clamp(260px, 58vw, 600px);
+  top: max(-11rem, -22vmin);
+  right: max(-8.5rem, -16vmin);
+  left: auto;
+  bottom: auto;
+  transform: rotate(16deg);
+  background: radial-gradient(
+    ellipse 68% 58% at 78% 16%,
+    rgb(255 0 127 / 0.62) 0%,
+    rgb(255 0 127 / 0.34) 38%,
+    rgb(255 0 127 / 0.1) 58%,
+    transparent 73%
+  );
+  opacity: 0.92;
+}
+
+/* Reforço inferior esquerdo (atrás da hashtag / canto da arte) */
+.about-spray--bl {
+  width: clamp(220px, 44vw, 460px);
+  height: clamp(180px, 36vw, 360px);
+  bottom: max(-6rem, -12vmin);
+  left: max(-6rem, -12vmin);
+  top: auto;
+  transform: rotate(6deg);
+  background: radial-gradient(
+    ellipse 70% 60% at 22% 78%,
+    rgb(255 0 127 / 0.42) 0%,
+    rgb(255 0 127 / 0.14) 48%,
+    transparent 71%
+  );
+  opacity: 0.72;
+}
+
+/* Inferior direito — grande como referência */
+.about-spray--br {
+  width: clamp(300px, 68vw, 680px);
+  height: clamp(260px, 54vw, 560px);
+  bottom: max(-11rem, -20vmin);
+  right: max(-7rem, -15vmin);
+  top: auto;
+  left: auto;
+  transform: rotate(-12deg);
+  background: radial-gradient(
+    ellipse 70% 62% at 82% 80%,
+    rgb(255 0 127 / 0.56) 0%,
+    rgb(255 0 127 / 0.28) 40%,
+    rgb(255 0 127 / 0.09) 56%,
+    transparent 74%
+  );
+  opacity: 0.92;
+}
+
+
+.about-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  padding-top: clamp(3.5rem, 11vh, 6.5rem);
+}
+
+.about-visuals {
+  position: relative;
+  min-height: min(90vh, 700px);
+  isolation: isolate;
+}
+
+.about-main {
+  position: relative;
+  padding-top: clamp(0.25rem, 2vh, 1.5rem);
+  min-width: 0;
+}
+
+.about-img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-img--card {
+  position: absolute;
+  top: 1%;
+  left: -20%;
+  width: clamp(13rem, 33vw, 45rem);
+  z-index: 3;
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--color-neon-pink) 26%, transparent));
+}
+
+.about-img--hashtag {
+  position: absolute;
+  bottom: 7%;
+  left: -35%;
+  width: clamp(9rem, 24vw, 15rem);
+  z-index: 4;
+}
+
+.about-img.about-img--avatar {
+  position: absolute;
+  bottom: -11.9%;
+  left: 30%;
+  transform: translateX(-50%);
+  width: clamp(21rem, 54vw, 45rem);
+  max-width: none;
+  z-index: 2;
+}
+
+.about-tag {
+  position: absolute;
+  top: clamp(-0.5rem, 1vh, -1rem);
+  left: 44%;
+  margin: 0;
+  font-family: var(--font-daruma), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  color: var(--color-neon-pink);
+  text-align: center;
+  transform: translate(-50%, 0) rotate(-20deg);
+  transform-origin: center center;
+  z-index: 5;
+  width: max-content;
+  pointer-events: none;
+}
+
+.about-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: clamp(0.35rem, 2vw, 0rem);
+  max-width: 45rem;
+}
+
+.about-hi {
+  margin: 0;
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(4.5rem, 20vw, 11rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.2rem;
+  color: var(--color-off-white);
+  text-transform: uppercase;
+}
+
+.about-img--mug {
+  width: clamp(4rem, 12vw, 20rem);
+  flex-shrink: 0;
+  margin-top: clamp(-10rem, 2vh, -2.5rem);
+}
+
+.about-txt {
+  color: var(--color-off-white);
+  text-align: left;
+  line-height: 1.35;
+  max-width: 22rem;
+  margin: clamp(0.75rem, 3vh, 1.5rem) 0 0;
+}
+
+.about-txt-strong {
+  font-weight: 700;
+}
+
+.about-para {
+  margin: 0 0 clamp(1rem, 3vh, 1.35rem);
+  max-width: 22rem;
+  text-align: left;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  line-height: 1.4;
+  color: var(--color-off-white);
+}
+
+.about-para:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-para .about-tittle-kicker {
+  font-size: inherit;
+}
+
+.about-tittle {
+  margin: 0 0 clamp(1.25rem, 4vh, 2rem);
+  max-width: 22rem;
+  text-align: left;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  line-height: 1.35;
+  color: var(--color-off-white);
+}
+
+.about-tittle--stack .about-tittle-lead {
+  display: block;
+  margin-bottom: 0.35em;
+}
+
+.about-tittle-lead {
+  font-family: var(--font-condiment);
+  font-size: clamp(1.85rem, 5.5vw, 3.35rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-neon-pink);
+  vertical-align: baseline;
+}
+
+.about-tittle-kicker {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  font-weight: 700;
+  color: var(--color-off-white);
+}
+
+.about-tittle-body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--color-off-white);
+}
+
+.about-tittle-emph {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-off-white);
+}
+
+.about-rule {
+  border: none;
+  margin: clamp(1.25rem, 4vw, 2rem) 0 0;
+  width: clamp(7rem, 18vw, 10rem);
+  height: 0.25rem;
+  background-color: var(--color-neon-pink);
+}
+
+.about-img--flame {
+  position: absolute;
+  bottom: clamp(-0.25rem, 2vh, -2rem);
+  right: clamp(-8rem, -4vw, -1rem);
+  width: clamp(4rem, 10vw, 30rem);
+  z-index: 2;
+}
+
+.about-geral {
+  margin-top: clamp(0.75rem, 2vh, 1.25rem);
+}
+
+@media (max-width: 900px) {
+  .about-stage {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+
+  .about-visuals {
+    min-height: min(60vh, 460px);
+    order: 1;
+    margin-inline: auto;
+    width: min(100%, 34rem);
+  }
+
+  .about-main {
+    order: 2;
+    padding-top: 0;
+  }
+
+  .about-tag {
+    left: 48%;
+    top: clamp(0.25rem, 2vh, 1rem);
+  }
+
+  .about-img--hashtag {
+    left: 0;
+  }
+
+  .about-img.about-img--avatar {
+    width: clamp(18rem, 92vw, 32rem);
+  }
+
+  .about-header {
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 22rem;
+  }
+
+  .about-img--flame {
+    right: 0;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,119 @@
+:host {
+  display: block;
+}
+
+.hero.Second-Page {
+  position: relative;
+  z-index: 10;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+.about-spray-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+
+.about-spray-layer::after {
+  content: '';
+  position: absolute;
+  inset: -5%;
+  z-index: 2;
+  opacity: 0.14;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  background-size: cover;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.about-spray {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+
+  filter: blur(56px);
+  z-index: 1;
+}
+
+
+.about-spray--tl {
+  width: clamp(280px, 56vw, 540px);
+  height: clamp(220px, 46vw, 440px);
+  top: max(-9rem, -18vmin);
+  left: max(-7.5rem, -14vmin);
+  transform: rotate(-10deg);
+  background: radial-gradient(
+    ellipse 72% 65% at 28% 25%,
+    rgb(255 0 127 / 0.52) 0%,
+    rgb(255 0 127 / 0.26) 40%,
+    rgb(255 0 127 / 0.08) 62%,
+    transparent 74%
+  );
+  opacity: 0.82;
+}
+
+
+.about-spray--tr {
+  width: clamp(320px, 72vw, 720px);
+  height: clamp(260px, 58vw, 600px);
+  top: max(-11rem, -22vmin);
+  right: max(-8.5rem, -16vmin);
+  left: auto;
+  bottom: auto;
+  transform: rotate(16deg);
+  background: radial-gradient(
+    ellipse 68% 58% at 78% 16%,
+    rgb(255 0 127 / 0.62) 0%,
+    rgb(255 0 127 / 0.34) 38%,
+    rgb(255 0 127 / 0.1) 58%,
+    transparent 73%
+  );
+  opacity: 0.92;
+}
+
+
+.about-spray--bl {
+  width: clamp(220px, 44vw, 460px);
+  height: clamp(180px, 36vw, 360px);
+  bottom: max(-6rem, -12vmin);
+  left: max(-6rem, -12vmin);
+  top: auto;
+  transform: rotate(6deg);
+  background: radial-gradient(
+    ellipse 70% 60% at 22% 78%,
+    rgb(255 0 127 / 0.42) 0%,
+    rgb(255 0 127 / 0.14) 48%,
+    transparent 71%
+  );
+  opacity: 0.72;
+}
+
+
+.about-spray--br {
+  width: clamp(300px, 68vw, 680px);
+  height: clamp(260px, 54vw, 560px);
+  bottom: max(-11rem, -20vmin);
+  right: max(-7rem, -15vmin);
+  top: auto;
+  left: auto;
+  transform: rotate(-12deg);
+  background: radial-gradient(
+    ellipse 70% 62% at 82% 80%,
+    rgb(255 0 127 / 0.56) 0%,
+    rgb(255 0 127 / 0.28) 40%,
+    rgb(255 0 127 / 0.09) 56%,
+    transparent 74%
+  );
+  opacity: 0.92;
+}

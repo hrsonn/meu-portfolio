@@ -1,0 +1,127 @@
+.hero.First-Page {
+  position: relative;
+  z-index: 10;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 4vw, 2rem)
+    clamp(2rem, 6vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.hero-tag {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2.25rem);
+  right: clamp(1rem, 4vw, 2.5rem);
+  margin: 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(0.8125rem, 1.8vw, 1rem);
+  color: var(--color-off-white);
+  letter-spacing: 0.04em;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-off-white) 40%, transparent));
+}
+
+.hero-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2.5rem);
+  width: min(100%, 1320px);
+  margin-inline: auto;
+}
+
+@media (min-width: 900px) {
+  .hero-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(0.75rem, 3vw, 2rem);
+  }
+}
+
+.hero-year-left,
+.hero-year-right {
+  margin: 0;
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-neon-pink);
+  font-size: clamp(4.5rem, 18vw, 16rem);
+  flex-shrink: 0;
+}
+
+.hero-graphic {
+  flex: 0 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: min(92vw, 540px);
+}
+
+.hero-graphic img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px color-mix(in srgb, var(--color-neon-pink) 22%, transparent));
+}
+
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.35;
+}
+
+.hero-blob--a {
+  width: min(42vw, 320px);
+  height: min(28vw, 200px);
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-neon-pink) 85%, transparent),
+    transparent 70%
+  );
+}
+
+.hero-blob--b {
+  width: min(50vw, 380px);
+  height: min(24vw, 160px);
+  bottom: 14%;
+  left: 4%;
+  transform: rotate(-8deg);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-neon-pink) 70%, transparent),
+    transparent 75%
+  );
+}
+
+.hero-blob--c {
+  width: min(35vw, 260px);
+  height: min(30vw, 200px);
+  bottom: 18%;
+  right: 6%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-neon-pink) 65%, transparent),
+    transparent 72%
+  );
+}

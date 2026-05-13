@@ -1,0 +1,11 @@
+@if (useCustomCursor()) {
+  <div
+    class="cursor-dot"
+    [style.transform]="cursorTransform()"
+    aria-hidden="true"
+  ></div>
+}
+
+<app-hero></app-hero>
+<app-about></app-about>
+<app-skills></app-skills>
