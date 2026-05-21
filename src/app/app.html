@@ -6,6 +6,23 @@
   ></div>
 }
 
-<app-hero></app-hero>
-<app-about></app-about>
-<app-skills></app-skills>
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+<nav class="sr-only" aria-label="Navegação principal">
+  <a href="#inicio">Início</a>
+  <a href="#sobre">Sobre mim</a>
+  <a href="#skills">Skills</a>
+</nav>
+
+<header class="site-header" role="banner">
+  <app-hero></app-hero>
+</header>
+
+<main id="conteudo-principal" class="site-main" role="main">
+  <app-about></app-about>
+  <app-skills></app-skills>
+</main>
+
+<footer class="sr-only" aria-label="Rodapé">
+  <p>Portfólio de Harrison Son Santos.</p>
+</footer>

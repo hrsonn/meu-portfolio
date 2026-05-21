@@ -1,73 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,600&family=Bebas+Neue&family=Condiment&family=Darumadrop+One&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,600&family=Bebas+Neue&family=Condiment&family=Darumadrop+One&display=swap');
-
-/* Cursor customizado */
-.cursor-dot {
-  width: 1rem;
-  height: 1rem;
-  background-color: oklch(72% 0.25 350);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 100;
-  mix-blend-mode: difference;
-  transition: transform 0.12s ease-out;
-  will-change: transform;
-}
-
-@media (max-width: 1023px) {
-  .cursor-dot {
-    display: none;
-  }
-}
-
-/* tema */
+/* 1. Design tokens */
 :root {
   --color-neon-pink: #ff007f;
+  --color-hot-pink: #ff006e;
   --color-cyan: #00f0ff;
   --color-cyber-black: #050505;
+  --color-black-soft: #090909;
   --color-off-white: #f4f3ee;
+  --color-muted-white: rgb(244 243 238 / 0.78);
+  --color-cursor: oklch(72% 0.25 350);
+  --color-pink-glow-strong: rgb(255 0 127 / 0.62);
+  --color-pink-glow-medium: rgb(255 0 127 / 0.34);
+  --color-pink-glow-soft: rgb(255 0 127 / 0.1);
 
-  --font-inter: 'Inter', sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
   --font-bebas: 'Bebas Neue', Impact, sans-serif;
   --font-condiment: 'Condiment', cursive;
   --font-daruma: 'Darumadrop One', system-ui;
+
+  --space-1: clamp(0.5rem, 1vw, 0.75rem);
+  --space-2: clamp(0.75rem, 1.4vw, 1rem);
+  --space-3: clamp(1rem, 2vw, 1.5rem);
+  --space-4: clamp(1.5rem, 3vw, 2.5rem);
+  --space-5: clamp(2.25rem, 5vw, 4rem);
+  --space-page-x: clamp(1rem, 4vw, 3rem);
+  --section-padding-y: clamp(4rem, 8vw, 6.5rem);
+  --section-min-height: 100svh;
+  --container-wide: 1320px;
+  --container-main: 1120px;
+
+  --display-xl: clamp(4.25rem, 15vw, 13rem);
+  --display-lg: clamp(3.75rem, 12vw, 10.5rem);
+  --display-md: clamp(3rem, 8vw, 6rem);
+  --text-body: clamp(0.95rem, 1.4vw, 1.08rem);
+
+  --noise-texture: url('https://grainy-gradients.vercel.app/noise.svg');
+  --shadow-pink: 0 0 24px rgb(255 0 127 / 0.22);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --z-background: 0;
+  --z-content: 2;
+  --z-overlay: 20;
+  --z-grain: 50;
+  --z-cursor: 100;
+  --z-section: 10;
 }
 
-/* grain */
-.grain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.055;
-  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-}
-
+/* 2. Reset and base */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html,
-body {
-  scroll-behavior: smooth;
-  margin: 0;
+html {
   min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+  overflow-x: clip;
   background-color: var(--color-cyber-black);
-  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: var(--noise-texture);
+  background-size: 280px 280px;
   color: var(--color-neon-pink);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-inter);
+  text-rendering: geometricPrecision;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 3. Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: calc(var(--z-cursor) + 1);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  background: var(--color-off-white);
+  color: var(--color-cyber-black);
+  font-weight: 700;
+  transform: translateY(-150%);
+  transition: transform 160ms var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* 4. Reusable visual effects */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: var(--noise-texture);
+  background-size: 260px 260px;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: var(--color-cursor);
+  mix-blend-mode: difference;
+  transition: transform 120ms var(--ease-out);
+  will-change: transform;
+}
+
+.about-spray-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-background);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.about-spray-layer::after {
+  content: '';
+  position: absolute;
+  inset: -5%;
+  z-index: 2;
+  opacity: 0.12;
+  pointer-events: none;
+  background-image: var(--noise-texture);
+  background-size: 280px 280px;
+  mix-blend-mode: overlay;
+}
+
+.about-spray {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(54px);
+}
+
+.about-spray--tl {
+  width: clamp(18rem, 48vw, 36rem);
+  height: clamp(14rem, 38vw, 29rem);
+  top: max(-8rem, -14vmin);
+  left: max(-7rem, -12vmin);
+  transform: rotate(-10deg);
+  background: radial-gradient(ellipse 72% 65% at 28% 25%, rgb(255 0 127 / 0.52), rgb(255 0 127 / 0.22) 42%, transparent 72%);
+  opacity: 0.82;
+}
+
+.about-spray--tr {
+  width: clamp(20rem, 58vw, 45rem);
+  height: clamp(16rem, 46vw, 37rem);
+  top: max(-10rem, -18vmin);
+  right: max(-8rem, -14vmin);
+  transform: rotate(16deg);
+  background: radial-gradient(ellipse 68% 58% at 78% 16%, var(--color-pink-glow-strong), var(--color-pink-glow-medium) 38%, var(--color-pink-glow-soft) 58%, transparent 73%);
+  opacity: 0.9;
+}
+
+.about-spray--bl {
+  width: clamp(14rem, 38vw, 29rem);
+  height: clamp(11rem, 30vw, 23rem);
+  bottom: max(-5rem, -10vmin);
+  left: max(-6rem, -11vmin);
+  transform: rotate(6deg);
+  background: radial-gradient(ellipse 70% 60% at 22% 78%, rgb(255 0 127 / 0.42), rgb(255 0 127 / 0.14) 48%, transparent 71%);
+  opacity: 0.7;
+}
+
+.about-spray--br {
+  width: clamp(19rem, 55vw, 42rem);
+  height: clamp(16rem, 43vw, 35rem);
+  right: max(-6rem, -12vmin);
+  bottom: max(-9rem, -16vmin);
+  transform: rotate(-12deg);
+  background: radial-gradient(ellipse 70% 62% at 82% 80%, rgb(255 0 127 / 0.56), rgb(255 0 127 / 0.28) 40%, transparent 74%);
+  opacity: 0.88;
+}
+
+@media (max-width: 1023px) {
+  .cursor-dot {
+    display: none;
+  }
 }

@@ -2,118 +2,260 @@
   display: block;
 }
 
-.hero.Second-Page {
+/* 1. Section layout */
+.hero.Third-Page {
+  --skills-pink: #ff006e;
+  --skills-orange: #ff8a00;
+  --skills-blue: #00b7ff;
+  --skills-yellow: #ffd400;
+  --skills-teal: #00d6c9;
+  --skills-light-blue: #73d7ff;
+
   position: relative;
-  z-index: 10;
-  min-height: 100dvh;
-  box-sizing: border-box;
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  overflow-x: visible;
-  overflow-y: visible;
+  z-index: var(--z-section);
+  min-height: var(--section-min-height);
+  padding: clamp(5.5rem, 10vh, 7rem) var(--space-page-x) clamp(8rem, 14vh, 11rem);
+  overflow: visible;
+  background: var(--noise-texture), var(--color-cyber-black);
+  isolation: isolate;
 }
 
-.about-spray-layer {
+.skills-main {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  gap: clamp(2.25rem, 5vh, 4rem);
+  width: min(100%, var(--container-wide));
+  margin-inline: auto;
+  padding-top: clamp(2.25rem, 7vh, 4rem);
+}
+
+/* 2. Background effects */
+.skills-bg,
+.skills-curves {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
+  z-index: var(--z-background);
   overflow: visible;
+  pointer-events: none;
 }
 
-
-.about-spray-layer::after {
-  content: '';
+.skills-blob {
   position: absolute;
-  inset: -5%;
-  z-index: 2;
-  opacity: 0.14;
-  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  background-size: cover;
-  pointer-events: none;
-  mix-blend-mode: overlay;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at center, rgb(255 0 110 / 0.7), rgb(255 0 110 / 0.24) 48%, transparent 74%);
+  filter: blur(50px);
 }
 
-.about-spray {
+.skills-blob--top-left {
+  top: -8rem;
+  left: -7rem;
+  width: clamp(16rem, 34vw, 34rem);
+  height: clamp(11rem, 24vw, 24rem);
+  opacity: 0.84;
+}
+
+.skills-blob--top-right {
+  top: -5rem;
+  right: -8rem;
+  width: clamp(13rem, 30vw, 30rem);
+  height: clamp(10rem, 22vw, 22rem);
+  opacity: 0.76;
+}
+
+.skills-blob--bottom-left {
+  bottom: -6rem;
+  left: -8rem;
+  width: clamp(15rem, 32vw, 32rem);
+  height: clamp(10rem, 20vw, 20rem);
+  opacity: 0.64;
+}
+
+.skills-curve {
   position: absolute;
-  pointer-events: none;
+  width: clamp(8rem, 18vw, 18rem);
+  height: clamp(3rem, 7vw, 6rem);
+  border-top: 0.22rem solid var(--skills-pink);
   border-radius: 50%;
-
-  filter: blur(56px);
-  z-index: 1;
+  opacity: 0.76;
 }
 
-
-.about-spray--tl {
-  width: clamp(280px, 56vw, 540px);
-  height: clamp(220px, 46vw, 440px);
-  top: max(-9rem, -18vmin);
-  left: max(-7.5rem, -14vmin);
-  transform: rotate(-10deg);
-  background: radial-gradient(
-    ellipse 72% 65% at 28% 25%,
-    rgb(255 0 127 / 0.52) 0%,
-    rgb(255 0 127 / 0.26) 40%,
-    rgb(255 0 127 / 0.08) 62%,
-    transparent 74%
-  );
-  opacity: 0.82;
+.skills-curve--a {
+  top: 39%;
+  left: 47%;
+  transform: rotate(-16deg);
 }
 
-
-.about-spray--tr {
-  width: clamp(320px, 72vw, 720px);
-  height: clamp(260px, 58vw, 600px);
-  top: max(-11rem, -22vmin);
-  right: max(-8.5rem, -16vmin);
-  left: auto;
-  bottom: auto;
-  transform: rotate(16deg);
-  background: radial-gradient(
-    ellipse 68% 58% at 78% 16%,
-    rgb(255 0 127 / 0.62) 0%,
-    rgb(255 0 127 / 0.34) 38%,
-    rgb(255 0 127 / 0.1) 58%,
-    transparent 73%
-  );
-  opacity: 0.92;
+.skills-curve--b {
+  top: 45%;
+  left: 55%;
+  width: clamp(6rem, 12vw, 13rem);
+  transform: rotate(18deg);
 }
 
-
-.about-spray--bl {
-  width: clamp(220px, 44vw, 460px);
-  height: clamp(180px, 36vw, 360px);
-  bottom: max(-6rem, -12vmin);
-  left: max(-6rem, -12vmin);
-  top: auto;
-  transform: rotate(6deg);
-  background: radial-gradient(
-    ellipse 70% 60% at 22% 78%,
-    rgb(255 0 127 / 0.42) 0%,
-    rgb(255 0 127 / 0.14) 48%,
-    transparent 71%
-  );
-  opacity: 0.72;
+/* 3. Heading system */
+.skills-stage {
+  position: absolute;
+  top: clamp(1.5rem, 4vw, 2.75rem);
+  left: var(--space-page-x);
+  z-index: 5;
 }
 
+.skills-tag {
+  margin: 0;
+  font-family: var(--font-daruma), var(--font-condiment), cursive;
+  font-size: clamp(2.6rem, 6.8vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.92;
+  color: var(--skills-pink);
+  text-align: center;
+  transform: rotate(-18deg);
+}
 
-.about-spray--br {
-  width: clamp(300px, 68vw, 680px);
-  height: clamp(260px, 54vw, 560px);
-  bottom: max(-11rem, -20vmin);
-  right: max(-7rem, -15vmin);
-  top: auto;
-  left: auto;
-  transform: rotate(-12deg);
-  background: radial-gradient(
-    ellipse 70% 62% at 82% 80%,
-    rgb(255 0 127 / 0.56) 0%,
-    rgb(255 0 127 / 0.28) 40%,
-    rgb(255 0 127 / 0.09) 56%,
-    transparent 74%
-  );
-  opacity: 0.92;
+.skills-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  min-width: 0;
+}
+
+.skills-title {
+  margin: 0;
+  color: var(--color-off-white);
+  font-family: var(--font-bebas);
+  font-size: clamp(4.1rem, 14.2vw, 11.5rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.skills-icon {
+  position: relative;
+  z-index: 4;
+  display: block;
+  width: clamp(3rem, 7vw, 6.25rem);
+  height: auto;
+  object-fit: contain;
+}
+
+.skills-icon--laptop {
+  transform: rotate(12deg) translateY(-12%);
+}
+
+.skills-icon--pen {
+  transform: rotate(-14deg) translateY(-8%);
+}
+
+.skills-icon--gear {
+  transform: rotate(-8deg) translateY(-10%);
+}
+
+/* 4. Skill labels */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 3vw, 2rem);
+  margin-top: clamp(0.75rem, 2vh, 1.25rem);
+}
+
+.skill-name {
+  margin: 0;
+  font-family: var(--font-inter);
+  font-size: clamp(0.92rem, 1.8vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: clamp(0.08em, 0.7vw, 0.18em);
+  text-transform: uppercase;
+}
+
+.skill-name--html {
+  color: transparent;
+  background: linear-gradient(90deg, var(--skills-orange) 0 48%, var(--skills-blue) 52% 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.skill-name--javascript {
+  color: var(--skills-yellow);
+}
+
+.skill-name--typescript,
+.skill-name--java {
+  color: var(--skills-blue);
+}
+
+.skill-name--angular {
+  color: var(--skills-pink);
+}
+
+.skill-name--figma,
+.skill-name--node {
+  color: var(--skills-orange);
+}
+
+.skill-name--canva {
+  color: var(--skills-teal);
+}
+
+.skill-name--python {
+  color: var(--skills-light-blue);
+}
+
+/* 5. Main character */
+.skills-nerd {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  width: auto;
+  height: clamp(16rem, 40svh, 30rem);
+  pointer-events: none;
+  user-select: none;
+  transform: translateY(6%);
+  filter: drop-shadow(0 0 18px rgb(255 0 110 / 0.25));
+}
+
+/* 6. Responsive */
+@media (max-width: 900px) {
+  .hero.Third-Page {
+    padding-top: clamp(6rem, 14vh, 8rem);
+    padding-bottom: clamp(13rem, 30vh, 18rem);
+  }
+
+  .skills-main {
+    gap: clamp(2.75rem, 7vh, 4rem);
+  }
+
+  .skills-heading,
+  .skills-list {
+    justify-content: flex-start;
+  }
+
+  .skills-title {
+    font-size: clamp(3.6rem, 18vw, 7rem);
+  }
+
+  .skills-nerd {
+    height: clamp(13rem, 34svh, 22rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .skills-heading {
+    gap: 0.5rem;
+  }
+
+  .skills-title {
+    font-size: clamp(3rem, 17vw, 4.8rem);
+  }
+
+  .skills-icon {
+    width: clamp(2.5rem, 13vw, 4rem);
+  }
 }

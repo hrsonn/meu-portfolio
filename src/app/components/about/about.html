@@ -1,9 +1,7 @@
 <div class="grain" aria-hidden="true"></div>
 
-<!-- Hero Sobre -->
-<section class="hero Second-Page">
+<section id="sobre" class="hero Second-Page" aria-labelledby="sobre-titulo" aria-describedby="sobre-resumo">
   <div class="about-spray-layer" aria-hidden="true">
-    <!-- Cantos tipo spray do mock: esq-sup médio · dir-sup forte · dir-inf forte -->
     <span class="about-spray about-spray--tl"></span>
     <span class="about-spray about-spray--tr"></span>
     <span class="about-spray about-spray--bl"></span>
@@ -11,7 +9,7 @@
   </div>
 
   <div class="about-stage">
-    <h2 class="about-tag">Sobre<br />Mim</h2>
+    <h2 id="sobre-titulo" class="about-tag">Sobre<br />Mim</h2>
 
     <aside class="about-visuals" aria-hidden="true">
       <img
@@ -46,17 +44,18 @@
 
     <div class="about-main">
       <header class="about-header">
-        <h1 class="about-hi">EAI!</h1>
+        <h3 class="about-hi">EAI!</h3>
         <img
           class="about-img about-img--mug"
           src="/assets/imgs/asste-coffee.png"
           width="88"
           height="88"
           alt=""
+          aria-hidden="true"
         />
       </header>
 
-      <p class="about-txt">
+      <p id="sobre-resumo" class="about-txt">
         Eu sou o Harrison <strong class="about-txt-strong">'Son'</strong> Santos, desenvolvedor /
         designer / estudante
       </p>
@@ -81,7 +80,7 @@
           ><span class="about-tittle-body"> pra outras pessoas.</span>
         </p>
 
-        <hr class="about-rule" />
+        <hr class="about-rule" aria-hidden="true" />
       </div>
     </div>
   </div>
