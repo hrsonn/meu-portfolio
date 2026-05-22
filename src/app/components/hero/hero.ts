@@ -8,4 +8,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
-export class Hero {}
+export class Hero {
+  readonly startYear = 2024;
+  readonly currentYear = new Date().getFullYear();
+  readonly startYearStr = String(this.startYear);
+  readonly currentYearStr = String(this.currentYear);
+}

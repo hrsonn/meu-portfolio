@@ -1,0 +1,267 @@
+:host {
+  display: block;
+}
+
+.contact {
+  position: relative;
+  z-index: 1;
+  min-height: var(--section-min-height);
+  padding: var(--section-padding-y) var(--space-page-x) clamp(16rem, 30vh, 24rem);
+  display: grid;
+  align-items: center;
+  overflow: visible;
+}
+
+.contact-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.contact-spray {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.contact-spray--tl {
+  width: clamp(18rem, 42vw, 34rem);
+  height: clamp(14rem, 34vw, 28rem);
+  top: -8rem;
+  left: -8rem;
+  background: radial-gradient(ellipse 72% 60% at 28% 22%, rgb(var(--pink-rgb) / 0.58), transparent 72%);
+  opacity: 0.4;
+}
+
+.contact-spray--tr {
+  width: clamp(16rem, 38vw, 30rem);
+  height: clamp(12rem, 28vw, 22rem);
+  top: -6rem;
+  right: -8rem;
+  background: radial-gradient(ellipse 68% 56% at 76% 18%, rgb(var(--pink-rgb) / 0.5), transparent 68%);
+  opacity: 0.38;
+}
+
+.contact-spray--bl {
+  width: clamp(20rem, 48vw, 38rem);
+  height: clamp(16rem, 38vw, 30rem);
+  bottom: -10rem;
+  left: -6rem;
+  background: radial-gradient(ellipse 70% 62% at 22% 78%, rgb(var(--pink-rgb) / 0.52), transparent 70%);
+  opacity: 0.4;
+}
+
+.contact-spray--br {
+  width: clamp(22rem, 52vw, 42rem);
+  height: clamp(18rem, 42vw, 34rem);
+  right: -8rem;
+  bottom: -12rem;
+  background: radial-gradient(ellipse 72% 64% at 82% 80%, rgb(var(--pink-rgb) / 0.6), transparent 74%);
+  opacity: 0.42;
+}
+
+.contact-spray--center {
+  width: clamp(14rem, 32vw, 26rem);
+  height: clamp(12rem, 28vw, 22rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgb(var(--pink-rgb) / 0.35), transparent 72%);
+  opacity: 0.25;
+}
+
+.contact-content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--container-main));
+  margin-inline: auto;
+}
+
+.contact-stage {
+  position: relative;
+  font-style: normal;
+}
+
+.contact-title {
+  margin: 0 0 clamp(2rem, 4vh, 3rem);
+  font-family: var(--font-bebas);
+  font-size: var(--display-xl);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-off-white);
+}
+
+.contact-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  max-width: min(100%, 38rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-pill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.35rem, 0.8vw, 0.6rem);
+  padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  text-decoration: none;
+  transition: transform 200ms var(--ease-out), background 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+.contact-pill:hover {
+  transform: translateY(-2px);
+  background: rgb(255 255 255 / 0.1);
+  box-shadow: 0 6px 20px rgb(var(--pink-rgb) / 0.12);
+}
+
+.contact-pill:focus-visible {
+  outline: 2px solid var(--color-off-white);
+  outline-offset: 3px;
+}
+
+.contact-pill-icon {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: var(--color-neon-pink);
+  color: var(--color-off-white);
+  font-family: var(--font-inter);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  flex: 0 0 auto;
+}
+
+.contact-pill-label {
+  font-family: var(--font-inter);
+  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-white);
+  text-transform: uppercase;
+}
+
+.contact-pill-value {
+  font-family: var(--font-inter);
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+  font-weight: 600;
+  color: var(--color-off-white);
+}
+
+.contact-avatar {
+  position: absolute;
+  left: clamp(43rem, 50vw, 51rem);
+  bottom: 0;
+  z-index: 8;
+  width: clamp(24rem, 55vw, 48rem);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 20px rgb(var(--pink-rgb) / 0.2));
+  animation: float 5s ease-in-out infinite;
+}
+
+.contact-form {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vh, 1rem);
+  width: min(100%, 32rem);
+  margin-top: clamp(1.5rem, 3vh, 2.5rem);
+}
+
+.contact-form-label {
+  display: block;
+}
+
+.contact-form-input {
+  width: 100%;
+  padding: clamp(0.7rem, 1.2vw, 0.9rem) clamp(1rem, 1.5vw, 1.25rem);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.04);
+  color: var(--color-off-white);
+  font-family: var(--font-inter);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  outline: none;
+  transition: border-color 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+
+.contact-form-input:focus {
+  border-color: var(--color-neon-pink);
+  background: rgb(255 255 255 / 0.07);
+}
+
+.contact-form-input::placeholder {
+  color: rgb(244 243 238 / 0.4);
+}
+
+.contact-form-msg {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.contact-form-btn {
+  width: fit-content;
+  margin-inline: auto;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--color-neon-pink);
+  color: var(--color-off-white);
+  font-family: var(--font-inter);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+.contact-form-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgb(var(--pink-rgb) / 0.4);
+}
+
+.contact-form-btn:focus-visible {
+  outline: 2px solid var(--color-off-white);
+  outline-offset: 3px;
+}
+
+@media (max-width: 899px) {
+  .contact-title {
+    font-size: clamp(4.5rem, 20vw, 8rem);
+  }
+
+  .contact-avatar {
+    width: clamp(16rem, 50vw, 32rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-pills {
+    flex-direction: column;
+  }
+
+  .contact-pill {
+    width: 100%;
+  }
+
+  .contact-avatar {
+    display: none;
+  }
+}

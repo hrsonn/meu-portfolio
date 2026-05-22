@@ -1,18 +1,8 @@
-@if (useCustomCursor()) {
-  <div
-    class="cursor-dot"
-    [style.transform]="cursorTransform()"
-    aria-hidden="true"
-  ></div>
-}
-
 <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
 
-<nav class="sr-only" aria-label="Navegação principal">
-  <a href="#inicio">Início</a>
-  <a href="#sobre">Sobre mim</a>
-  <a href="#skills">Skills</a>
-</nav>
+<div class="custom-cursor" aria-hidden="true"></div>
+
+<app-navbar></app-navbar>
 
 <header class="site-header" role="banner">
   <app-hero></app-hero>
@@ -21,8 +11,8 @@
 <main id="conteudo-principal" class="site-main" role="main">
   <app-about></app-about>
   <app-skills></app-skills>
+  <app-projects></app-projects>
+  <app-contact></app-contact>
 </main>
 
-<footer class="sr-only" aria-label="Rodapé">
-  <p>Portfólio de Harrison Son Santos.</p>
-</footer>
+<app-footer></app-footer>

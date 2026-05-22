@@ -1,6 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
 
+beforeAll(() => {
+  if (typeof globalThis.IntersectionObserver === 'undefined') {
+    class MockIntersectionObserver implements IntersectionObserver {
+      readonly root: Element | Document | null = null;
+      readonly rootMargin: string = '';
+      readonly thresholds: ReadonlyArray<number> = [];
+      constructor(
+        private callback: IntersectionObserverCallback,
+        private options?: IntersectionObserverInit,
+      ) {}
+      observe(target: Element): void {
+        this.callback([{target, isIntersecting: true} as IntersectionObserverEntry], this);
+      }
+      unobserve(): void {}
+      disconnect(): void {}
+      takeRecords(): IntersectionObserverEntry[] { return []; }
+    }
+    Object.defineProperty(globalThis, 'IntersectionObserver', {
+      writable: true,
+      configurable: true,
+      value: MockIntersectionObserver,
+    });
+  }
+});
+
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({

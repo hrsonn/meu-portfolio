@@ -1,1 +1,17 @@
-<p>navbar works!</p>
+<nav class="navbar" aria-label="Navegação rápida">
+  <ul class="navbar-list" role="list">
+    @for (section of sections; track section.id) {
+      <li class="navbar-item">
+        <button
+          class="navbar-btn"
+          [class.navbar-btn--active]="activeSection() === section.id"
+          (click)="scrollTo(section.id)"
+          [attr.aria-label]="'Ir para ' + section.label"
+        >
+          <span class="navbar-dot"></span>
+          <span class="navbar-label">{{ section.label }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

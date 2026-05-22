@@ -1,8 +1,5 @@
-<div class="grain" aria-hidden="true"></div>
+<section id="inicio" class="hero-section" aria-labelledby="hero-title">
 
-<section id="inicio" class="hero First-Page" aria-labelledby="hero-title">
-  <h1 id="hero-title" class="sr-only">Portfólio de Harrison Son Santos</h1>
-  <p class="hero-tag">"SON"</p>
 
   <div class="hero-blobs" aria-hidden="true">
     <span class="hero-blob hero-blob--a"></span>
@@ -11,17 +8,22 @@
   </div>
 
   <div class="hero-row">
-    <p class="hero-year-left">2024</p>
+    <time class="hero-year-left" [attr.datetime]="startYearStr">{{ startYear }}</time>
 
     <div class="hero-graphic">
       <img
-        src="/assets/imgs/PORTFOLIO-IMG.png"
-        alt="Logo do portfólio com a palavra Portfolio em tipografia estilizada"
+        src="/assets/imgs/PORTFOLIO-IMG.webp"
+        alt="Logotipo do portfólio com a palavra Portfolio em tipografia estilizada com contorno rosa sobre fundo preto"
         width="520"
+        height="auto"
         loading="eager"
       />
     </div>
 
-    <p class="hero-year-right">2026</p>
+    <time class="hero-year-right" [attr.datetime]="currentYearStr">{{ currentYear }}</time>
   </div>
+
+  <h1 id="hero-title" class="hero-headline">Harrison <span class="hero-headline-em">'Son'</span> Santos</h1>
+  <p class="hero-sub">Front-End Developer &amp; Designer</p>
+  <a class="hero-cta" href="#projetos">VEJA MEUS PROJETOS</a>
 </section>

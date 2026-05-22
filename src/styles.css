@@ -1,24 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,600&family=Bebas+Neue&family=Condiment&family=Darumadrop+One&display=swap');
 
-/* 1. Design tokens */
+/* ========================================
+   1. DESIGN TOKENS
+   ======================================== */
 :root {
+  /* Colors */
   --color-neon-pink: #ff007f;
   --color-hot-pink: #ff006e;
   --color-cyan: #00f0ff;
   --color-cyber-black: #050505;
   --color-black-soft: #090909;
   --color-off-white: #f4f3ee;
-  --color-muted-white: rgb(244 243 238 / 0.78);
-  --color-cursor: oklch(72% 0.25 350);
-  --color-pink-glow-strong: rgb(255 0 127 / 0.62);
-  --color-pink-glow-medium: rgb(255 0 127 / 0.34);
-  --color-pink-glow-soft: rgb(255 0 127 / 0.1);
+  --color-muted-white: rgb(244 243 238 / 0.92);
 
+  --pink-rgb: 255 0 127;
+  --color-pink-glow-strong: rgb(var(--pink-rgb) / 0.62);
+  --color-pink-glow-medium: rgb(var(--pink-rgb) / 0.34);
+  --color-pink-glow-soft: rgb(var(--pink-rgb) / 0.1);
+
+  /* Typography */
   --font-inter: 'Inter', system-ui, sans-serif;
   --font-bebas: 'Bebas Neue', Impact, sans-serif;
   --font-condiment: 'Condiment', cursive;
   --font-daruma: 'Darumadrop One', system-ui;
 
+  /* Spacing */
   --space-1: clamp(0.5rem, 1vw, 0.75rem);
   --space-2: clamp(0.75rem, 1.4vw, 1rem);
   --space-3: clamp(1rem, 2vw, 1.5rem);
@@ -26,27 +32,30 @@
   --space-5: clamp(2.25rem, 5vw, 4rem);
   --space-page-x: clamp(1rem, 4vw, 3rem);
   --section-padding-y: clamp(4rem, 8vw, 6.5rem);
+
+  /* Layout */
   --section-min-height: 100svh;
   --container-wide: 1320px;
   --container-main: 1120px;
 
+  /* Typography scale */
   --display-xl: clamp(4.25rem, 15vw, 13rem);
   --display-lg: clamp(3.75rem, 12vw, 10.5rem);
   --display-md: clamp(3rem, 8vw, 6rem);
   --text-body: clamp(0.95rem, 1.4vw, 1.08rem);
 
+  /* Effects */
   --noise-texture: url('https://grainy-gradients.vercel.app/noise.svg');
-  --shadow-pink: 0 0 24px rgb(255 0 127 / 0.22);
+  --shadow-pink: 0 0 24px rgb(var(--pink-rgb) / 0.22);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --z-background: 0;
-  --z-content: 2;
+
+  /* Stacking order */
   --z-overlay: 20;
-  --z-grain: 50;
-  --z-cursor: 100;
-  --z-section: 10;
 }
 
-/* 2. Reset and base */
+/* ========================================
+   2. RESET & BASE
+   ======================================== */
 *,
 *::before,
 *::after {
@@ -71,6 +80,22 @@ body {
   text-rendering: geometricPrecision;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 40% at 10% 15%, rgb(var(--pink-rgb) / 0.13), transparent 60%),
+    radial-gradient(ellipse 70% 35% at 90% 25%, rgb(var(--pink-rgb) / 0.10), transparent 58%),
+    radial-gradient(ellipse 75% 40% at 20% 45%, rgb(var(--pink-rgb) / 0.11), transparent 60%),
+    radial-gradient(ellipse 70% 35% at 80% 55%, rgb(var(--pink-rgb) / 0.09), transparent 58%),
+    radial-gradient(ellipse 80% 40% at 15% 75%, rgb(var(--pink-rgb) / 0.12), transparent 62%),
+    radial-gradient(ellipse 75% 38% at 85% 85%, rgb(var(--pink-rgb) / 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgb(var(--pink-rgb) / 0.06), transparent 55%);
+}
+
 img,
 svg {
   max-width: 100%;
@@ -83,7 +108,9 @@ select {
   font: inherit;
 }
 
-/* 3. Accessibility utilities */
+/* ========================================
+   3. ACCESSIBILITY
+   ======================================== */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -100,7 +127,7 @@ select {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  z-index: calc(var(--z-cursor) + 1);
+  z-index: 100;
   padding: 0.75rem 1rem;
   border-radius: 0.375rem;
   background: var(--color-off-white);
@@ -114,36 +141,14 @@ select {
   transform: translateY(0);
 }
 
-/* 4. Reusable visual effects */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-grain);
-  pointer-events: none;
-  opacity: 0.045;
-  background-image: var(--noise-texture);
-  background-size: 260px 260px;
-}
-
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-cursor);
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  pointer-events: none;
-  background-color: var(--color-cursor);
-  mix-blend-mode: difference;
-  transition: transform 120ms var(--ease-out);
-  will-change: transform;
-}
+/* ========================================
+   4. REUSABLE EFFECTS
+   ======================================== */
 
 .about-spray-layer {
   position: absolute;
   inset: 0;
-  z-index: var(--z-background);
+  z-index: 0;
   pointer-events: none;
   overflow: visible;
 }
@@ -155,8 +160,7 @@ select {
   z-index: 2;
   opacity: 0.12;
   pointer-events: none;
-  background-image: var(--noise-texture);
-  background-size: 280px 280px;
+  background: var(--noise-texture) 0 0 / 280px 280px;
   mix-blend-mode: overlay;
 }
 
@@ -174,8 +178,8 @@ select {
   top: max(-8rem, -14vmin);
   left: max(-7rem, -12vmin);
   transform: rotate(-10deg);
-  background: radial-gradient(ellipse 72% 65% at 28% 25%, rgb(255 0 127 / 0.52), rgb(255 0 127 / 0.22) 42%, transparent 72%);
-  opacity: 0.82;
+  background: radial-gradient(ellipse 72% 65% at 28% 25%, rgb(var(--pink-rgb) / 0.52), rgb(var(--pink-rgb) / 0.22) 42%, transparent 72%);
+  opacity: 0.35;
 }
 
 .about-spray--tr {
@@ -184,8 +188,8 @@ select {
   top: max(-10rem, -18vmin);
   right: max(-8rem, -14vmin);
   transform: rotate(16deg);
-  background: radial-gradient(ellipse 68% 58% at 78% 16%, var(--color-pink-glow-strong), var(--color-pink-glow-medium) 38%, var(--color-pink-glow-soft) 58%, transparent 73%);
-  opacity: 0.9;
+  background: radial-gradient(ellipse 68% 58% at 78% 16%, rgb(var(--pink-rgb) / 0.62), rgb(var(--pink-rgb) / 0.34) 38%, rgb(var(--pink-rgb) / 0.1) 58%, transparent 73%);
+  opacity: 0.4;
 }
 
 .about-spray--bl {
@@ -194,22 +198,108 @@ select {
   bottom: max(-5rem, -10vmin);
   left: max(-6rem, -11vmin);
   transform: rotate(6deg);
-  background: radial-gradient(ellipse 70% 60% at 22% 78%, rgb(255 0 127 / 0.42), rgb(255 0 127 / 0.14) 48%, transparent 71%);
-  opacity: 0.7;
+  background: radial-gradient(ellipse 70% 60% at 22% 78%, rgb(var(--pink-rgb) / 0.42), rgb(var(--pink-rgb) / 0.14) 48%, transparent 71%);
+  opacity: 0.3;
 }
 
 .about-spray--br {
   width: clamp(19rem, 55vw, 42rem);
-  height: clamp(16rem, 43vw, 35rem);
+  height: clamp(16rem, 43vw, 37rem);
   right: max(-6rem, -12vmin);
   bottom: max(-9rem, -16vmin);
   transform: rotate(-12deg);
-  background: radial-gradient(ellipse 70% 62% at 82% 80%, rgb(255 0 127 / 0.56), rgb(255 0 127 / 0.28) 40%, transparent 74%);
-  opacity: 0.88;
+  background: radial-gradient(ellipse 70% 62% at 82% 80%, rgb(var(--pink-rgb) / 0.56), rgb(var(--pink-rgb) / 0.28) 40%, transparent 74%);
+  opacity: 0.38;
 }
 
-@media (max-width: 1023px) {
-  .cursor-dot {
-    display: none;
+/* ========================================
+   5. UTILITY CLASSES
+   ======================================== */
+.u-absolute-fill {
+  position: absolute;
+  inset: 0;
+}
+
+.u-pointer-none {
+  pointer-events: none;
+}
+
+.u-no-select {
+  user-select: none;
+}
+
+.u-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-grid-center {
+  display: grid;
+  place-items: center;
+}
+
+/* ========================================
+   6. ANIMATIONS
+   ======================================== */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section[id] {
+  animation: fade-in-up 0.7s var(--ease-out) both;
+}
+
+/* ========================================
+   7. CUSTOM CURSOR
+   ======================================== */
+
+.custom-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-neon-pink);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: left 0.08s ease-out, top 0.08s ease-out;
+  will-change: left, top;
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+  .custom-cursor { display: block; }
+}
+
+/* ========================================
+   8. ANIMATIONS
+   ======================================== */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes sway-a {
+  0%, 100% { transform: rotate(-16deg); }
+  50%      { transform: rotate(-11deg); }
+}
+
+@keyframes sway-b {
+  0%, 100% { transform: rotate(18deg); }
+  50%      { transform: rotate(13deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px rgb(var(--pink-rgb) / 0.3); }
+  50%      { box-shadow: 0 0 28px rgb(var(--pink-rgb) / 0.6); }
 }

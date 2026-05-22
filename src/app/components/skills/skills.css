@@ -3,7 +3,7 @@
 }
 
 /* 1. Section layout */
-.hero.Third-Page {
+  .skills-section {
   --skills-pink: #ff006e;
   --skills-orange: #ff8a00;
   --skills-blue: #00b7ff;
@@ -12,17 +12,15 @@
   --skills-light-blue: #73d7ff;
 
   position: relative;
-  z-index: var(--z-section);
+  z-index: 1;
   min-height: var(--section-min-height);
   padding: clamp(5.5rem, 10vh, 7rem) var(--space-page-x) clamp(8rem, 14vh, 11rem);
   overflow: visible;
-  background: var(--noise-texture), var(--color-cyber-black);
-  isolation: isolate;
 }
 
 .skills-main {
   position: relative;
-  z-index: var(--z-content);
+  z-index: 2;
   display: grid;
   gap: clamp(2.25rem, 5vh, 4rem);
   width: min(100%, var(--container-wide));
@@ -31,44 +29,22 @@
 }
 
 /* 2. Background effects */
-.skills-bg,
+.skills-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgb(255 0 110 / 0.08) 1.5px, transparent 1.5px);
+  background-size: 2.5rem 2.5rem;
+}
+
 .skills-curves {
   position: absolute;
   inset: 0;
-  z-index: var(--z-background);
+  z-index: 0;
   overflow: visible;
   pointer-events: none;
-}
-
-.skills-blob {
-  position: absolute;
-  border-radius: 999px;
-  background: radial-gradient(ellipse at center, rgb(255 0 110 / 0.7), rgb(255 0 110 / 0.24) 48%, transparent 74%);
-  filter: blur(50px);
-}
-
-.skills-blob--top-left {
-  top: -8rem;
-  left: -7rem;
-  width: clamp(16rem, 34vw, 34rem);
-  height: clamp(11rem, 24vw, 24rem);
-  opacity: 0.84;
-}
-
-.skills-blob--top-right {
-  top: -5rem;
-  right: -8rem;
-  width: clamp(13rem, 30vw, 30rem);
-  height: clamp(10rem, 22vw, 22rem);
-  opacity: 0.76;
-}
-
-.skills-blob--bottom-left {
-  bottom: -6rem;
-  left: -8rem;
-  width: clamp(15rem, 32vw, 32rem);
-  height: clamp(10rem, 20vw, 20rem);
-  opacity: 0.64;
 }
 
 .skills-curve {
@@ -84,6 +60,7 @@
   top: 39%;
   left: 47%;
   transform: rotate(-16deg);
+  animation: sway-a 8s ease-in-out infinite;
 }
 
 .skills-curve--b {
@@ -91,6 +68,7 @@
   left: 55%;
   width: clamp(6rem, 12vw, 13rem);
   transform: rotate(18deg);
+  animation: sway-b 8s ease-in-out 2s infinite;
 }
 
 /* 3. Heading system */
@@ -161,7 +139,9 @@
   align-items: center;
   justify-content: center;
   gap: clamp(0.75rem, 3vw, 2rem);
-  margin-top: clamp(0.75rem, 2vh, 1.25rem);
+  margin: clamp(0.75rem, 2vh, 1.25rem) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .skill-name {
@@ -199,31 +179,17 @@
   color: var(--skills-orange);
 }
 
-.skill-name--canva {
-  color: var(--skills-teal);
-}
-
 .skill-name--python {
   color: var(--skills-light-blue);
 }
 
-/* 5. Main character */
-.skills-nerd {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 8;
-  width: auto;
-  height: clamp(16rem, 40svh, 30rem);
-  pointer-events: none;
-  user-select: none;
-  transform: translateY(6%);
-  filter: drop-shadow(0 0 18px rgb(255 0 110 / 0.25));
+.skill-name--mysql {
+  color: var(--skills-teal);
 }
 
 /* 6. Responsive */
-@media (max-width: 900px) {
-  .hero.Third-Page {
+@media (max-width: 899px) {
+.skills-section {
     padding-top: clamp(6rem, 14vh, 8rem);
     padding-bottom: clamp(13rem, 30vh, 18rem);
   }
@@ -237,12 +203,12 @@
     justify-content: flex-start;
   }
 
-  .skills-title {
-    font-size: clamp(3.6rem, 18vw, 7rem);
+  .skills-list {
+    margin-top: clamp(0.75rem, 2vh, 1.25rem);
   }
 
-  .skills-nerd {
-    height: clamp(13rem, 34svh, 22rem);
+  .skills-title {
+    font-size: clamp(3.6rem, 18vw, 7rem);
   }
 }
 
@@ -257,5 +223,11 @@
 
   .skills-icon {
     width: clamp(2.5rem, 13vw, 4rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .skills-title {
+    font-size: clamp(2.2rem, 14vw, 3rem);
   }
 }
