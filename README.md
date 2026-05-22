@@ -21,6 +21,8 @@
 
 <br/>
 
+<strong>https://meu-portfolio-zeta-beryl.vercel.app/</strong>
+
 > **Portfólio pessoal** construído com Angular 21 standalone components, TypeScript strict mode  
 > e um design system cyberpunk de neon-pink que pulsa na sua tela.
 
